@@ -1,7 +1,9 @@
-# DMRA
+# Eastham Tennis & Pickleball
 
-Static site for our local tennis and pickleball association, built with
-[Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
+Static site for the Duck Meadow Recreation Association, which runs the outdoor
+tennis courts on Widgeon Drive and the pickleball courts on Ireland Way in
+Eastham, Massachusetts. Built with [Astro](https://astro.build) and
+[Tailwind CSS](https://tailwindcss.com).
 
 ## Requirements
 
@@ -32,33 +34,57 @@ The dev server runs at http://localhost:4321.
 ```
 public/           Static assets copied verbatim into the build
 src/
-  components/     Reusable pieces of markup (Header, Footer)
+  assets/photos/  Source photographs, optimised at build time
+  components/     Header, Footer, OfficerList, PhotoGrid, FacilityDetail
   layouts/        Page shells
     BaseLayout    HTML document, <head> metadata, header and footer
     ProseLayout   BaseLayout plus typographic styling for Markdown pages
   pages/          One file per route (.astro or .md)
   styles/         global.css: Tailwind entry point and theme tokens
-  consts.ts       Site title, description and navigation links
+  consts.ts       Site and association details — see below
+  photos.ts       The photo list, with alt text
 ```
+
+## Editing content
+
+Most things people actually need to change live in **`src/consts.ts`**, not in
+the pages:
+
+| What                                    | Constant                         |
+| --------------------------------------- | -------------------------------- |
+| Site name, description                  | `SITE_TITLE`, `SITE_DESCRIPTION` |
+| Navigation menu                         | `NAV_LINKS`                      |
+| Court locations, addresses and features | `FACILITIES`                     |
+| Officer names, emails and phone numbers | `OFFICERS`                       |
+| Dues and guest fee                      | `ANNUAL_DUES`, `GUEST_FEE`       |
+
+Changing a price or a phone number there updates every page that shows it.
 
 ## Adding a page
 
 Every file in `src/pages/` becomes a route. Markdown works out of the box, so a
-page with no custom layout needs no code:
+page of plain prose needs no code at all:
 
 ```md
 ---
 layout: ../layouts/ProseLayout.astro
-title: Court Locations
-description: Where to find us.
+title: Court Rules
+description: How we share the courts.
 ---
 
 Write the page content here in Markdown.
 ```
 
-Saving that as `src/pages/courts.md` publishes it at `/courts/`. See
-`src/pages/about.md` for a working example. To show the page in the site
-navigation, add it to `NAV_LINKS` in `src/consts.ts`.
+Saving that as `src/pages/rules.md` publishes it at `/rules/`. To show the page
+in the site navigation, add it to `NAV_LINKS` in `src/consts.ts`.
+
+## Adding photos
+
+Drop the image into `src/assets/photos/`, then add an entry to `PHOTOS` in
+`src/photos.ts` with a short description for screen readers and whether it shows
+tennis or pickleball. It will appear on `/photos/` and on the matching court
+page. Astro handles resizing and WebP conversion at build time — commit the
+full-size original.
 
 ## Conventions
 

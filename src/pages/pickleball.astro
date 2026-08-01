@@ -1,0 +1,17 @@
+---
+import FacilityDetail from '../components/FacilityDetail.astro';
+import { FACILITIES } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { photosFor } from '../photos';
+
+const facility = FACILITIES.find((f) => f.sport === 'Pickleball');
+if (facility === undefined)
+  throw new Error('Missing pickleball facility in consts.ts');
+---
+
+<BaseLayout
+  title="Pickleball"
+  description="Three recently renovated dedicated pickleball courts on Ireland Way in Eastham, Massachusetts."
+>
+  <FacilityDetail facility={facility} photos={photosFor('pickleball')} />
+</BaseLayout>

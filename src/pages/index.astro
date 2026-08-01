@@ -1,48 +1,122 @@
 ---
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/photos/tennis1.jpg';
+import OfficerList from '../components/OfficerList.astro';
+import { ANNUAL_DUES, FACILITIES, ORG_NAME, mapsUrl } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
   <section class="bg-brand-50">
-    <div class="mx-auto max-w-4xl px-6 py-20">
-      <h1
-        class="text-brand-900 text-4xl font-bold tracking-tight text-balance sm:text-5xl"
-      >
-        Tennis and pickleball, all in one place.
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-pretty text-slate-700">
-        Leagues, lessons, open play and court information for players of every
-        level in our community.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a
-          href="/about/"
-          class="bg-brand-600 hover:bg-brand-700 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+    <div
+      class="mx-auto grid max-w-5xl items-center gap-10 px-6 py-16 lg:grid-cols-2 lg:py-20"
+    >
+      <div>
+        <p class="text-brand-700 text-sm font-semibold tracking-wide uppercase">
+          Accepting new members
+        </p>
+        <h1
+          class="text-brand-900 mt-3 text-4xl font-bold tracking-tight text-balance sm:text-5xl"
         >
-          Learn more
-        </a>
-        <a
-          href="mailto:hello@example.com"
-          class="border-brand-600 text-brand-700 hover:bg-brand-100 rounded-md border px-5 py-2.5 text-sm font-semibold"
-        >
-          Get in touch
-        </a>
+          Tennis and pickleball in Eastham
+        </h1>
+        <p class="mt-5 max-w-xl text-lg text-pretty text-slate-700">
+          Outdoor courts on Cape Cod, run by the {ORG_NAME}. Two tennis courts
+          on Widgeon Drive, three pickleball courts on Ireland Way, and a
+          community of players at every level.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/membership/"
+            class="bg-brand-600 hover:bg-brand-700 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            Become a member
+          </a>
+          <a
+            href="/photos/"
+            class="border-brand-600 text-brand-700 hover:bg-brand-100 rounded-md border px-5 py-2.5 text-sm font-semibold"
+          >
+            See the courts
+          </a>
+        </div>
+      </div>
+      <Image
+        src={heroPhoto}
+        alt="Players in a doubles match on the tennis courts at Widgeon Drive."
+        widths={[600, 900, 1200]}
+        sizes="(min-width: 1024px) 32rem, 90vw"
+        loading="eager"
+        class="border-brand-100 aspect-[4/3] w-full rounded-xl border object-cover shadow-sm"
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900">Our courts</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {
+        FACILITIES.map((facility) => (
+          <article class="flex flex-col rounded-xl border border-slate-200 p-6">
+            <p class="text-brand-700 text-sm font-semibold tracking-wide uppercase">
+              {facility.sport}
+            </p>
+            <h3 class="mt-2 text-xl font-semibold text-slate-900">
+              {facility.courts}
+            </h3>
+            <p class="mt-2 text-slate-600">
+              <a
+                href={mapsUrl(facility.address)}
+                class="hover:text-brand-700 underline underline-offset-4"
+                rel="noopener"
+              >
+                {facility.address}
+              </a>
+            </p>
+            <a
+              href={facility.href}
+              class="text-brand-700 mt-5 text-sm font-semibold hover:underline"
+            >
+              About these courts &rarr;
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-slate-50">
+    <div class="mx-auto max-w-5xl px-6 py-16">
+      <div class="prose prose-slate prose-a:text-brand-700 max-w-none">
+        <h2>About the association</h2>
+        <p>
+          The {ORG_NAME} was organised around 1990 to manage two sets of tennis courts
+          for the local Duck Meadow community, as defined in the bylaws of the association.
+          Today it manages and maintains three pickleball courts on Ireland Way and
+          two tennis courts on Widgeon Drive in Eastham, MA.
+        </p>
+        <p>
+          The association is run by a volunteer Board of Directors and relies on
+          occasional volunteer support from its members for seasonal activities
+          such as power washing and leaf cleanup. Two maintenance committees
+          make sure key priorities are addressed for tennis and pickleball
+          players alike.
+        </p>
+        <p>
+          Annual dues are {ANNUAL_DUES}, and membership is open to new players.{
+            ' '
+          }
+          <a href="/membership/">See what membership includes</a>.
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-4xl px-6 py-16">
-    <div class="prose prose-slate max-w-none">
-      <h2>What we do</h2>
-      <p>
-        Placeholder copy. This section will be replaced with content from the
-        association's existing site.
-      </p>
-      <ul>
-        <li>Organised leagues and ladders across both sports</li>
-        <li>Beginner clinics and coaching for juniors and adults</li>
-        <li>Court schedules, open play times and club events</li>
-      </ul>
+  <section class="mx-auto max-w-5xl px-6 py-16">
+    <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+      For information, contact
+    </h2>
+    <div class="mt-8">
+      <OfficerList />
     </div>
   </section>
 </BaseLayout>

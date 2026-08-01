@@ -1,0 +1,35 @@
+---
+import PhotoGrid from '../components/PhotoGrid.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { photosFor } from '../photos';
+---
+
+<BaseLayout
+  title="Photos"
+  description="Photos of the tennis courts on Widgeon Drive and the pickleball courts on Ireland Way in Eastham, Massachusetts."
+>
+  <div class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      Photos
+    </h1>
+    <p class="mt-3 text-lg text-slate-600">
+      From the tennis and pickleball courts.
+    </p>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold text-slate-900">Pickleball</h2>
+      <p class="mt-1 text-slate-600">345 Ireland Way</p>
+      <div class="mt-6">
+        <PhotoGrid photos={photosFor('pickleball')} />
+      </div>
+    </section>
+
+    <section class="mt-14">
+      <h2 class="text-2xl font-semibold text-slate-900">Tennis</h2>
+      <p class="mt-1 text-slate-600">130 Widgeon Drive</p>
+      <div class="mt-6">
+        <PhotoGrid photos={photosFor('tennis')} />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

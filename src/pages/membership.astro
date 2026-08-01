@@ -1,0 +1,83 @@
+---
+import OfficerList from '../components/OfficerList.astro';
+import { ANNUAL_DUES, GUEST_FEE, ORG_NAME } from '../consts';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Membership"
+  description={`Membership of the ${ORG_NAME} costs ${ANNUAL_DUES} a year and covers everyone living at or visiting a member's home.`}
+>
+  <div class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+      Membership
+    </h1>
+    <p class="text-brand-700 mt-3 text-lg font-medium">
+      We are accepting new members.
+    </p>
+
+    <dl class="mt-10 grid gap-4 sm:grid-cols-2">
+      <div class="rounded-xl border border-slate-200 p-6">
+        <dt class="text-sm font-medium tracking-wide text-slate-500 uppercase">
+          Annual dues
+        </dt>
+        <dd class="text-brand-900 mt-2 text-3xl font-bold">{ANNUAL_DUES}</dd>
+        <dd class="mt-2 text-slate-600">
+          Covers everyone living at, or visiting, a member's home.
+        </dd>
+      </div>
+      <div class="rounded-xl border border-slate-200 p-6">
+        <dt class="text-sm font-medium tracking-wide text-slate-500 uppercase">
+          Guest fee
+        </dt>
+        <dd class="text-brand-900 mt-2 text-3xl font-bold">{GUEST_FEE}</dd>
+        <dd class="mt-2 text-slate-600">
+          Members may invite guests to play; a guest fee is required per visit.
+        </dd>
+      </div>
+    </dl>
+
+    <div class="prose prose-slate prose-a:text-brand-700 mt-12 max-w-none">
+      <h2>What membership includes</h2>
+      <ul>
+        <li>
+          Free use of the tennis courts on Widgeon Drive and the pickleball
+          courts on Ireland Way for everyone living at or visiting your home.
+        </li>
+        <li>
+          Access to the online court reservation system, which members use to
+          book courts up to six days in advance.
+        </li>
+        <li>
+          A member handbook explaining how to book courts, how to join groups,
+          court hours and other important information.
+        </li>
+      </ul>
+
+      <h2>About the association</h2>
+      <p>
+        The {ORG_NAME} was organised around 1990 to manage two sets of tennis courts
+        for the local Duck Meadow community, as defined in the bylaws of the association.
+        Today it manages and maintains three pickleball courts at 345 Ireland Way
+        and two tennis courts at 130 Widgeon Drive in Eastham, MA.
+      </p>
+      <p>
+        The association is run by a volunteer Board of Directors and relies on
+        occasional volunteer support from its members for various seasonal
+        activities such as power washing and leaf cleanup. It also has two newly
+        established maintenance committees to make sure that key priorities are
+        addressed, to enhance the experience of all tennis and pickleball
+        players.
+      </p>
+    </div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        For membership information, contact one of the officers
+      </h2>
+      <div class="mt-6">
+        <OfficerList />
+      </div>
+    </section>
+  </div>
+</BaseLayout>
