@@ -42,7 +42,7 @@ export const FACILITIES: readonly Facility[] = [
     features: [
       'Three recently renovated courts with permanent posts and nets',
       'Dedicated pickleball courts',
-      'Several self-organising groups use the courts, as well as many individuals',
+      'Several self-organizing groups use the courts, as well as many individuals',
       'Court reservations can be made online up to six days in advance',
       'Parking for 10 cars — we encourage car pooling',
       'Bike rack, with access from the Rail Trail',
@@ -59,7 +59,7 @@ export const FACILITIES: readonly Facility[] = [
       'Sheltered from the wind',
       'Relatively slow playing surface',
       'Locked portable toilet, accessible with a court key',
-      'Several self-organising groups use the courts, as well as many individuals',
+      'Several self-organizing groups use the courts, as well as many individuals',
       'Groups include Intermediate Women, Advanced Intermediate Women and Advanced Intermediate Men',
     ],
   },

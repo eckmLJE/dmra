@@ -34,7 +34,7 @@ The dev server runs at http://localhost:4321.
 ```
 public/           Static assets copied verbatim into the build
 src/
-  assets/photos/  Source photographs, optimised at build time
+  assets/photos/  Source photographs, optimized at build time
   components/     Header, Footer, OfficerList, PhotoGrid, FacilityDetail
   layouts/        Page shells
     BaseLayout    HTML document, <head> metadata, header and footer
