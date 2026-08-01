@@ -6,6 +6,18 @@ export const ORG_NAME = 'Duck Meadow Recreation Association';
 export const SITE_DESCRIPTION =
   'Outdoor tennis and pickleball courts in Eastham, Massachusetts, on Cape Cod. Run by the Duck Meadow Recreation Association. Now accepting new members.';
 
+/**
+ * Prefixes a root-relative path with the site's base path.
+ *
+ * When the site is served from a subdirectory rather than a domain root — as
+ * GitHub Pages does for a project site — a bare `href="/photos/"` would 404.
+ * Write paths as if the site were at the root and pass them through this helper
+ * when rendering. `BASE_URL` comes from `base` in astro.config.ts, which reads
+ * the deployment environment, so nothing here hard-codes a host or directory.
+ */
+export const url = (path: string): string =>
+  `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
+
 export interface NavLink {
   readonly href: string;
   readonly label: string;

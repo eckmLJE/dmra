@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/photos/tennis1.jpg';
 import OfficerList from '../components/OfficerList.astro';
-import { ANNUAL_DUES, FACILITIES, ORG_NAME, mapsUrl } from '../consts';
+import { ANNUAL_DUES, FACILITIES, ORG_NAME, mapsUrl, url } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -27,13 +27,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a
-            href="/membership/"
+            href={url('/membership/')}
             class="bg-brand-600 hover:bg-brand-700 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
           >
             Become a member
           </a>
           <a
-            href="/photos/"
+            href={url('/photos/')}
             class="border-brand-600 text-brand-700 hover:bg-brand-100 rounded-md border px-5 py-2.5 text-sm font-semibold"
           >
             See the courts
@@ -73,7 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
               </a>
             </p>
             <a
-              href={facility.href}
+              href={url(facility.href)}
               class="text-brand-700 mt-5 text-sm font-semibold hover:underline"
             >
               About these courts &rarr;
@@ -105,7 +105,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Annual dues are {ANNUAL_DUES}, and membership is open to new players.{
             ' '
           }
-          <a href="/membership/">See what membership includes</a>.
+          <a href={url('/membership/')}>See what membership includes</a>.
         </p>
       </div>
     </div>

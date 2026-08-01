@@ -86,6 +86,39 @@ tennis or pickleball. It will appear on `/photos/` and on the matching court
 page. Astro handles resizing and WebP conversion at build time — commit the
 full-size original.
 
+## Deployment
+
+Every push to `main` builds the site and publishes it to GitHub Pages via
+`.github/workflows/deploy.yml`. The build type-checks first, so a type error
+fails the deploy rather than shipping.
+
+**One-time setup:** in the repository, go to Settings → Pages and set _Source_
+to **GitHub Actions**. Until that is done the build step succeeds but the
+deploy step fails.
+
+### Where the site is served from
+
+Nothing in the source hard-codes the domain or directory. Two environment
+variables drive it, and CI fills them in from the repository's Pages
+configuration:
+
+| Variable    | Meaning                                    | Unset          |
+| ----------- | ------------------------------------------ | -------------- |
+| `SITE_URL`  | Origin, used for canonical and social URLs | localhost:4321 |
+| `BASE_PATH` | Subdirectory the site is served from       | domain root    |
+
+A GitHub Pages project site is served from a subdirectory, so internal links
+must be prefixed. Use the `url()` helper from `src/consts.ts` for every internal
+link rather than writing `href="/photos/"` directly:
+
+```astro
+<a href={url('/photos/')}>Photos</a>
+```
+
+When the association points a real domain at the site, set `SITE_URL` to it,
+leave `BASE_PATH` unset, and every link collapses back to the domain root with
+no other change. See `.env.example`.
+
 ## Conventions
 
 - TypeScript runs on Astro's `strictest` preset with several additional
