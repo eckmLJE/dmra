@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <section class="bg-brand-50">
+    <div class="mx-auto max-w-4xl px-6 py-20">
+      <h1
+        class="text-brand-900 text-4xl font-bold tracking-tight text-balance sm:text-5xl"
+      >
+        Tennis and pickleball, all in one place.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-pretty text-slate-700">
+        Leagues, lessons, open play and court information for players of every
+        level in our community.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/about/"
+          class="bg-brand-600 hover:bg-brand-700 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+        >
+          Learn more
+        </a>
+        <a
+          href="mailto:hello@example.com"
+          class="border-brand-600 text-brand-700 hover:bg-brand-100 rounded-md border px-5 py-2.5 text-sm font-semibold"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <div class="prose prose-slate max-w-none">
+      <h2>What we do</h2>
+      <p>
+        Placeholder copy. This section will be replaced with content from the
+        association's existing site.
+      </p>
+      <ul>
+        <li>Organised leagues and ladders across both sports</li>
+        <li>Beginner clinics and coaching for juniors and adults</li>
+        <li>Court schedules, open play times and club events</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

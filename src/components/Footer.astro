@@ -1,0 +1,18 @@
+---
+import { SITE_TITLE } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-50">
+  <div
+    class="mx-auto max-w-4xl px-6 py-8 text-sm text-slate-500 sm:flex sm:items-center sm:justify-between"
+  >
+    <p>&copy; {year} {SITE_TITLE}. All rights reserved.</p>
+    <p class="mt-2 sm:mt-0">
+      <a href="mailto:hello@example.com" class="hover:text-brand-700"
+        >hello@example.com</a
+      >
+    </p>
+  </div>
+</footer>

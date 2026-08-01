@@ -1,0 +1,20 @@
+---
+import type { MarkdownLayoutProps } from 'astro';
+import BaseLayout from './BaseLayout.astro';
+
+type Props = MarkdownLayoutProps<{
+  title: string;
+  description?: string | undefined;
+}>;
+
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
+  <article class="mx-auto max-w-4xl px-6 py-12">
+    <div class="prose prose-slate prose-a:text-brand-700 max-w-none">
+      <h1>{frontmatter.title}</h1>
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

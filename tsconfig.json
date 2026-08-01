@@ -1,0 +1,18 @@
+{
+  "extends": "astro/tsconfigs/strictest",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    // Type-check plain JavaScript files too, so nothing slips past unchecked.
+    "checkJs": true,
+    // Fields coming from an index signature must be read with `obj["key"]`,
+    // making it obvious which accesses are not statically known.
+    "noPropertyAccessFromIndexSignature": true,
+    // Astro executes TypeScript directly rather than transpiling it, so only
+    // type syntax that can be erased is allowed (no enums, namespaces, or
+    // constructor parameter properties).
+    "erasableSyntaxOnly": true,
+    // Side-effect imports (e.g. `import "./global.css"`) must resolve.
+    "noUncheckedSideEffectImports": true
+  }
+}
