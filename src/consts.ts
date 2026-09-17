@@ -44,10 +44,6 @@ export interface Facility {
 export const mapsUrl = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
-/** Strips formatting from a display phone number so it is dialable. */
-export const telUrl = (phone: string): string =>
-  `tel:+1${phone.replace(/\D/g, '')}`;
-
 export const FACILITIES: readonly Facility[] = [
   {
     name: 'Pickleball courts on Ireland Way',
@@ -71,10 +67,11 @@ export const FACILITIES: readonly Facility[] = [
     courts: '2 courts',
     address: '130 Widgeon Drive, Eastham, MA 02642',
     features: [
-      'Well sheltered hard-surface outdoor courts',
+      'Hard-surfaced outdoor courts',
       'Sheltered from the wind',
       'Relatively slow playing surface',
-      'Locked portable toilet, accessible with a court key',
+      'Locked portable toilet',
+      'Parking for 8 cars',
       'Several self-organizing groups use the courts, as well as many individuals',
       'Groups include Intermediate Women, Advanced Intermediate Women and Advanced Intermediate Men',
     ],
@@ -84,30 +81,26 @@ export const FACILITIES: readonly Facility[] = [
 export interface Officer {
   readonly name: string;
   readonly role: string;
-  readonly email: string;
-  readonly phone: string;
 }
 
+/**
+ * Officers are listed by name and role only. Enquiries go to the shared
+ * association address below rather than to anyone's personal email, and
+ * personal phone numbers live in the member handbook instead of on the public
+ * site. See docs/website-review-plan.md.
+ */
 export const OFFICERS: readonly Officer[] = [
-  {
-    name: 'Robert Zitelli',
-    role: 'President',
-    email: 'robert.zitelli@gmail.com',
-    phone: '(201) 390-8537',
-  },
-  {
-    name: 'Vicki Markuse',
-    role: 'Secretary',
-    email: 'vim0070@gmail.com',
-    phone: '(781) 367-7521',
-  },
-  {
-    name: 'Ellen Sicinski',
-    role: 'Treasurer',
-    email: 'ellen.sicinski@gmail.com',
-    phone: '(203) 470-3785',
-  },
+  { name: 'Robert Zitelli', role: 'President' },
+  { name: 'Vicki Markuse', role: 'Secretary' },
+  { name: 'Ellen Sicinski', role: 'Treasurer' },
 ];
+
+/**
+ * PLACEHOLDER — replace with the real shared association mailbox once it
+ * exists. example.com is reserved for documentation, so nothing sent here can
+ * reach a real inbox by accident.
+ */
+export const CONTACT_EMAIL = 'dmra.eastham@example.com';
 
 export const ANNUAL_DUES = '$300';
 export const GUEST_FEE = '$15';

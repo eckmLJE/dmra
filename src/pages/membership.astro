@@ -1,7 +1,7 @@
 ---
-import OfficerList from '../components/OfficerList.astro';
 import {
   ANNUAL_DUES,
+  CONTACT_EMAIL,
   GUEST_FEE,
   GUEST_VISITS_PER_SEASON,
   ORG_NAME,
@@ -75,13 +75,14 @@ const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per se
       </ul>
     </div>
 
-    <section class="mt-12">
-      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
-        For membership information, contact one of the officers
-      </h2>
-      <div class="mt-6">
-        <OfficerList />
-      </div>
-    </section>
+    <p class="mt-12 text-slate-600">
+      To apply, or to ask anything about membership, email{' '}
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        class="hover:text-brand-700 text-brand-700 underline underline-offset-4"
+      >
+        {CONTACT_EMAIL}
+      </a>
+    </p>
   </div>
 </BaseLayout>
