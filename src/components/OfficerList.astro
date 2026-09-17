@@ -1,8 +1,5 @@
 ---
-import { OFFICERS } from '../consts';
-
-// Strip formatting so the number is dialable from a phone.
-const telHref = (phone: string): string => `tel:+1${phone.replace(/\D/g, '')}`;
+import { OFFICERS, telUrl } from '../consts';
 ---
 
 <ul class="grid gap-4 sm:grid-cols-3">
@@ -21,7 +18,7 @@ const telHref = (phone: string): string => `tel:+1${phone.replace(/\D/g, '')}`;
         </p>
         <p class="text-sm">
           <a
-            href={telHref(officer.phone)}
+            href={telUrl(officer.phone)}
             class="hover:text-brand-700 text-slate-600"
           >
             {officer.phone}

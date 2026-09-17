@@ -1,9 +1,24 @@
 ---
 import { Image } from 'astro:assets';
 import heroPhoto from '../assets/photos/tennis1.jpg';
-import OfficerList from '../components/OfficerList.astro';
-import { ANNUAL_DUES, FACILITIES, ORG_NAME, mapsUrl, url } from '../consts';
+import {
+  ANNUAL_DUES,
+  FACILITIES,
+  OFFICERS,
+  ORG_NAME,
+  mapsUrl,
+  telUrl,
+  url,
+} from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const president = OFFICERS.find((officer) => officer.role === 'President');
+if (president === undefined) throw new Error('Missing President in consts.ts');
+
+// Built here rather than inline: Prettier wraps long lines between an
+// expression and the text after it, and Astro drops the whitespace at that
+// break, silently gluing the words together.
+const intro = `Outdoor tennis and pickleball courts on Cape Cod, run by the ${ORG_NAME}, open to players of every level.`;
 ---
 
 <BaseLayout>
@@ -21,9 +36,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Tennis and pickleball in Eastham
         </h1>
         <p class="mt-5 max-w-xl text-lg text-pretty text-slate-700">
-          Outdoor courts on Cape Cod, run by the {ORG_NAME}. Two tennis courts
-          on Widgeon Drive, three pickleball courts on Ireland Way, and a
-          community of players at every level.
+          {intro}
         </p>
         <div class="mt-8 flex flex-wrap gap-4">
           <a
@@ -95,14 +108,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           two tennis courts on Widgeon Drive in Eastham, MA.
         </p>
         <p>
-          The association is run by a volunteer Board of Directors and relies on
-          occasional volunteer support from its members for seasonal activities
-          such as power washing and leaf cleanup. Two maintenance committees
-          make sure key priorities are addressed for tennis and pickleball
-          players alike.
+          The association is run by a volunteer Board of Directors and member
+          volunteers. Two maintenance committees support and maintain the
+          condition of all courts.
         </p>
         <p>
-          Annual dues are {ANNUAL_DUES}, and membership is open to new players.{
+          Annual dues are {ANNUAL_DUES}. We are currently accepting new members.{
             ' '
           }
           <a href={url('/membership/')}>See what membership includes</a>.
@@ -112,11 +123,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <section class="mx-auto max-w-5xl px-6 py-16">
-    <h2 class="text-2xl font-bold tracking-tight text-slate-900">
-      For information, contact
-    </h2>
-    <div class="mt-8">
-      <OfficerList />
+    <div class="rounded-xl border border-slate-200 p-6">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        Questions?
+      </h2>
+      <p class="mt-3 text-slate-600">
+        Contact {president.name}, {president.role.toLowerCase()} of the association,
+        at{' '}
+        <a
+          href={`mailto:${president.email}`}
+          class="hover:text-brand-700 underline underline-offset-4"
+        >
+          {president.email}
+        </a>{' '}
+        or{' '}
+        <a href={telUrl(president.phone)} class="hover:text-brand-700">
+          {president.phone}
+        </a>. All three officers are listed on the Membership page.
+      </p>
     </div>
   </section>
 </BaseLayout>

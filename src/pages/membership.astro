@@ -1,6 +1,6 @@
 ---
 import OfficerList from '../components/OfficerList.astro';
-import { ANNUAL_DUES, GUEST_FEE, ORG_NAME } from '../consts';
+import { ANNUAL_DUES, GUEST_FEE, ORG_NAME, url } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -14,6 +14,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </h1>
     <p class="text-brand-700 mt-3 text-lg font-medium">
       We are accepting new members.
+    </p>
+    <p class="mt-3 max-w-2xl text-slate-600">
+      Membership of the {ORG_NAME} covers the tennis courts on Widgeon Drive and the
+      pickleball courts on Ireland Way in Eastham.{' '}
+      <a
+        href={url('/')}
+        class="hover:text-brand-700 underline underline-offset-4"
+      >
+        More about the association
+      </a>.
     </p>
 
     <dl class="mt-10 grid gap-4 sm:grid-cols-2">
@@ -53,22 +63,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           court hours and other important information.
         </li>
       </ul>
-
-      <h2>About the association</h2>
-      <p>
-        The {ORG_NAME} was organized around 1990 to manage two sets of tennis courts
-        for the local Duck Meadow community, as defined in the bylaws of the association.
-        Today it manages and maintains three pickleball courts at 345 Ireland Way
-        and two tennis courts at 130 Widgeon Drive in Eastham, MA.
-      </p>
-      <p>
-        The association is run by a volunteer Board of Directors and relies on
-        occasional volunteer support from its members for various seasonal
-        activities such as power washing and leaf cleanup. It also has two newly
-        established maintenance committees to make sure that key priorities are
-        addressed, to enhance the experience of all tennis and pickleball
-        players.
-      </p>
     </div>
 
     <section class="mt-12">

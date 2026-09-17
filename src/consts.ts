@@ -44,6 +44,10 @@ export interface Facility {
 export const mapsUrl = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
+/** Strips formatting from a display phone number so it is dialable. */
+export const telUrl = (phone: string): string =>
+  `tel:+1${phone.replace(/\D/g, '')}`;
+
 export const FACILITIES: readonly Facility[] = [
   {
     name: 'Pickleball courts on Ireland Way',
@@ -105,5 +109,5 @@ export const OFFICERS: readonly Officer[] = [
   },
 ];
 
-export const ANNUAL_DUES = '$290';
+export const ANNUAL_DUES = '$300';
 export const GUEST_FEE = '$10';

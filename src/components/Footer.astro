@@ -1,5 +1,5 @@
 ---
-import { ORG_NAME, SITE_TITLE, url } from '../consts';
+import { ORG_NAME, SITE_TITLE } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -13,13 +13,7 @@ const year = new Date().getFullYear();
       <p class="mt-1">Eastham, Massachusetts &middot; Cape Cod</p>
     </div>
     <p class="mt-4 sm:mt-0 sm:text-right">
-      {`© ${year} ${ORG_NAME}.`}<br />
-      <a
-        href={url('/membership/')}
-        class="hover:text-brand-700 underline underline-offset-4"
-      >
-        Membership inquiries
-      </a>
+      {`© ${year} ${ORG_NAME}.`}
     </p>
   </div>
 </footer>
