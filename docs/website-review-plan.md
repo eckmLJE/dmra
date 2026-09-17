@@ -135,12 +135,12 @@ and the usual hacks break for screen readers.
 The heading is "For further information, contact **the** officers", not the
 board's "one of the officers". Once there is a single address, inviting someone
 to pick one officer and then giving them one mailbox reads as a contradiction.
-The page now names the officers, gives one address, and says it reaches all of
-them.
+The page names the officers and gives one address, and says nothing about how
+mail is routed — so the board can set the mailbox up however suits them without
+the page becoming untrue.
 
-**Still needed from the board:** create the shared mailbox, configure it to
-forward to or be shared by all three officers — the page states that it does —
-and decide who monitors it.
+**Still needed from the board:** create the shared mailbox and decide who
+monitors it.
 
 **Note on git history.** The repository is public, and the officers' personal
 emails and phone numbers were committed in earlier versions of `consts.ts`.
@@ -150,6 +150,22 @@ nothing new is exposed either way. Purging history is possible (rewrite and
 force-push) but disruptive; worth doing only if the board wants those details
 off the public record entirely, and it should happen before the site gets wider
 circulation.
+
+---
+
+## Site quality
+
+Not from the board's review — found while auditing, fixed in the same pass.
+
+| Item                                                 | Status  | Notes                                                                                                                                                                                                                                       |
+| ---------------------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Stale meta descriptions                              | `DONE`  | Membership still described the old "everyone living at or visiting a member's home" wording in the description search engines and link previews show; Tennis still said "well-sheltered outdoor hard courts". Both now match the page copy. |
+| No 404 page                                          | `DONE`  | `src/pages/404.astro`. Without it, a mistyped URL got GitHub Pages' generic page with no nav and no route back. Its links respect `BASE_PATH`.                                                                                              |
+| `scroll-behavior: smooth` ignored motion preferences | `DONE`  | Now inside `@media (prefers-reduced-motion: no-preference)`.                                                                                                                                                                                |
+| Contrast, heading order, alt text, unique titles     | `DONE`  | Audited, no problems. All text passes WCAG AA; no skipped heading levels; every image has alt text; all six page titles differ.                                                                                                             |
+| `ProseLayout.astro` unused                           | Keeping | No page imports it since `about.md` was removed, but the README documents it as the zero-code way to add a prose page. Twenty lines of on-ramp, not dead weight.                                                                            |
+| No `og:image`                                        | `TODO`  | Link previews in group chats and social posts render as bare text cards. Needs an absolute URL, so it waits on the domain decision.                                                                                                         |
+| No sitemap or robots.txt                             | `TODO`  | `@astrojs/sitemap` is a one-line integration. Marginal for six pages; worth adding when the real domain goes live.                                                                                                                          |
 
 ---
 
@@ -203,8 +219,6 @@ test is whether each link does a different job at a different scroll depth.
    Blocks four items.
 2. **Membership application copy** — blocks the digital application.
 3. **Skedda URL** — blocks the "Book a court" link.
-4. **Real shared mailbox address** — the site shows a placeholder, and the copy
-   states the address reaches all three officers, so it must be configured to do
-   so.
+4. **Real shared mailbox address** — the site shows a placeholder.
 5. **Venmo decision** — whether it goes on the site at all, and under which kind
    of Venmo account.

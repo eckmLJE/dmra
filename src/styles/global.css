@@ -10,6 +10,10 @@
   --color-brand-900: oklch(0.3 0.07 150);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Respect an OS-level request for reduced motion; smooth scrolling can trigger
+   vestibular discomfort. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
