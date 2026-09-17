@@ -1,5 +1,5 @@
 ---
-import { ORG_NAME, SITE_TITLE } from '../consts';
+import { MAILING_ADDRESS, ORG_NAME, SITE_TITLE } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -10,7 +10,16 @@ const year = new Date().getFullYear();
   >
     <div>
       <p class="font-medium text-slate-700">{SITE_TITLE}</p>
-      <p class="mt-1">Eastham, Massachusetts &middot; Cape Cod</p>
+      <address class="mt-1 not-italic">
+        {
+          MAILING_ADDRESS.map((line, i) => (
+            <Fragment>
+              {i > 0 && <br />}
+              {line}
+            </Fragment>
+          ))
+        }
+      </address>
     </div>
     <p class="mt-4 sm:mt-0 sm:text-right">
       {`© ${year} ${ORG_NAME}.`}

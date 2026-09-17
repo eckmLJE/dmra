@@ -110,4 +110,14 @@ export const OFFICERS: readonly Officer[] = [
 ];
 
 export const ANNUAL_DUES = '$300';
-export const GUEST_FEE = '$10';
+export const GUEST_FEE = '$15';
+
+/** Maximum guest visits one membership may host in a season. */
+export const GUEST_VISITS_PER_SEASON = 8;
+
+/** Postal address, shown in the footer of every page. One line per element. */
+export const MAILING_ADDRESS: readonly string[] = [
+  'DMRA',
+  'PO Box 521',
+  'Eastham, MA 02642',
+];

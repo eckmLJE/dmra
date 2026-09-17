@@ -1,7 +1,17 @@
 ---
 import OfficerList from '../components/OfficerList.astro';
-import { ANNUAL_DUES, GUEST_FEE, ORG_NAME, url } from '../consts';
+import {
+  ANNUAL_DUES,
+  GUEST_FEE,
+  GUEST_VISITS_PER_SEASON,
+  ORG_NAME,
+  url,
+} from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Assembled here so no formatter can break the line between the expression and
+// the text after it, which silently drops the space.
+const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per season. Members may invite guests to play.`;
 ---
 
 <BaseLayout
@@ -33,7 +43,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </dt>
         <dd class="text-brand-900 mt-2 text-3xl font-bold">{ANNUAL_DUES}</dd>
         <dd class="mt-2 text-slate-600">
-          Covers everyone living at, or visiting, a member's home.
+          Household membership — includes everyone living in a member's home,
+          including renters and out-of-town visitors.
         </dd>
       </div>
       <div class="rounded-xl border border-slate-200 p-6">
@@ -41,9 +52,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           Guest fee
         </dt>
         <dd class="text-brand-900 mt-2 text-3xl font-bold">{GUEST_FEE}</dd>
-        <dd class="mt-2 text-slate-600">
-          Members may invite guests to play; a guest fee is required per visit.
-        </dd>
+        <dd class="mt-2 text-slate-600">{guestFeeTerms}</dd>
       </div>
     </dl>
 
@@ -52,7 +61,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <ul>
         <li>
           Free use of the tennis courts on Widgeon Drive and the pickleball
-          courts on Ireland Way for everyone living at or visiting your home.
+          courts on Ireland Way for any DMRA household member, including renters
+          and out-of-town visitors.
         </li>
         <li>
           Access to the online court reservation system, which members use to
