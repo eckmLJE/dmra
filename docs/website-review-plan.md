@@ -132,8 +132,15 @@ general-enquiry option at no extra cost.
 Email obfuscation tricks are not worth doing — modern scrapers run JavaScript,
 and the usual hacks break for screen readers.
 
-**Still needed from the board:** create the shared mailbox and decide who
-monitors it.
+The heading is "For further information, contact **the** officers", not the
+board's "one of the officers". Once there is a single address, inviting someone
+to pick one officer and then giving them one mailbox reads as a contradiction.
+The page now names the officers, gives one address, and says it reaches all of
+them.
+
+**Still needed from the board:** create the shared mailbox, configure it to
+forward to or be shared by all three officers — the page states that it does —
+and decide who monitors it.
 
 **Note on git history.** The repository is public, and the officers' personal
 emails and phone numbers were committed in earlier versions of `consts.ts`.
@@ -196,6 +203,8 @@ test is whether each link does a different job at a different scroll depth.
    Blocks four items.
 2. **Membership application copy** — blocks the digital application.
 3. **Skedda URL** — blocks the "Book a court" link.
-4. **Real shared mailbox address** — the site currently shows a placeholder.
+4. **Real shared mailbox address** — the site shows a placeholder, and the copy
+   states the address reaches all three officers, so it must be configured to do
+   so.
 5. **Venmo decision** — whether it goes on the site at all, and under which kind
    of Venmo account.
