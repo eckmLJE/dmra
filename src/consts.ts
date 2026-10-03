@@ -103,11 +103,28 @@ export const OFFICERS: readonly Officer[] = [
  */
 export const CONTACT_EMAIL = 'dmra.eastham@example.com';
 
-export const ANNUAL_DUES = '$300';
+/** Annual dues. Playing members may use the courts; supporting members fund
+ *  the association without playing. */
+export const PLAYING_DUES = '$300';
+export const SUPPORTING_DUES = '$175';
+
 export const GUEST_FEE = '$15';
 
 /** Maximum guest visits one membership may host in a season. */
 export const GUEST_VISITS_PER_SEASON = 8;
+
+/** Court reservation system. The old dmra.skedda.com address still redirects
+ *  here, so links members already have keep working. */
+export const BOOKING_URL = 'https://dmra.allbooked.com';
+
+/**
+ * PLACEHOLDER — the online membership application does not exist yet. Replace
+ * with the real Google Form address before the site moves to its own domain;
+ * until then this button goes nowhere useful. example.com is reserved for
+ * documentation and cannot be a live site.
+ */
+export const MEMBERSHIP_FORM_URL =
+  'https://example.com/dmra-membership-application';
 
 /** Postal address, shown in the footer of every page. One line per element. */
 export const MAILING_ADDRESS: readonly string[] = [

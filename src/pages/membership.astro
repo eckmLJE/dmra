@@ -1,22 +1,46 @@
 ---
 import {
-  ANNUAL_DUES,
+  BOOKING_URL,
   CONTACT_EMAIL,
   GUEST_FEE,
   GUEST_VISITS_PER_SEASON,
+  MEMBERSHIP_FORM_URL,
   ORG_NAME,
+  PLAYING_DUES,
+  SUPPORTING_DUES,
   url,
 } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Assembled here so no formatter can break the line between the expression and
 // the text after it, which silently drops the space.
-const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per season. Members may invite guests to play.`;
+const guestFeeTerms = `${GUEST_FEE} per visit, up to ${GUEST_VISITS_PER_SEASON} visits per season. Members may invite guests to play.`;
+
+const TIERS = [
+  {
+    name: 'Playing membership',
+    price: PLAYING_DUES,
+    detail:
+      "The right to use the tennis and pickleball courts, for everyone living in a member's home, including renters and out-of-town visitors.",
+  },
+  {
+    name: 'Supporting membership',
+    price: SUPPORTING_DUES,
+    detail:
+      'For members who do not use the courts but wish to support the work of the association for the benefit of the neighborhood.',
+  },
+];
+
+const STEPS = [
+  'Fill out the membership application.',
+  'An officer reviews it and emails you back with the ways to pay.',
+  'Pay by Venmo, or mail a check. Your membership starts once payment is received.',
+];
 ---
 
 <BaseLayout
   title="Membership"
-  description={`Membership of the ${ORG_NAME} costs ${ANNUAL_DUES} a year and covers everyone living in a member's home, including renters and out-of-town visitors.`}
+  description={`Membership of the ${ORG_NAME} costs ${PLAYING_DUES} a year for playing members and ${SUPPORTING_DUES} for supporting members, and covers everyone living in a member's home.`}
 >
   <div class="mx-auto max-w-5xl px-6 py-12">
     <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
@@ -37,24 +61,54 @@ const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per se
     </p>
 
     <dl class="mt-10 grid gap-4 sm:grid-cols-2">
-      <div class="rounded-xl border border-slate-200 p-6">
-        <dt class="text-sm font-medium tracking-wide text-slate-500 uppercase">
-          Annual dues
-        </dt>
-        <dd class="text-brand-900 mt-2 text-3xl font-bold">{ANNUAL_DUES}</dd>
-        <dd class="mt-2 text-slate-600">
-          Household membership — includes everyone living in a member's home,
-          including renters and out-of-town visitors.
-        </dd>
-      </div>
-      <div class="rounded-xl border border-slate-200 p-6">
-        <dt class="text-sm font-medium tracking-wide text-slate-500 uppercase">
-          Guest fee
-        </dt>
-        <dd class="text-brand-900 mt-2 text-3xl font-bold">{GUEST_FEE}</dd>
-        <dd class="mt-2 text-slate-600">{guestFeeTerms}</dd>
-      </div>
+      {
+        TIERS.map((tier) => (
+          <div class="rounded-xl border border-slate-200 p-6">
+            <dt class="text-sm font-medium tracking-wide text-slate-500 uppercase">
+              {tier.name}
+            </dt>
+            <dd class="text-brand-900 mt-2 text-3xl font-bold">{tier.price}</dd>
+            <dd class="mt-2 text-slate-600">{tier.detail}</dd>
+          </div>
+        ))
+      }
     </dl>
+
+    <p class="mt-4 rounded-xl border border-slate-200 p-6 text-slate-600">
+      <span class="text-sm font-medium tracking-wide text-slate-500 uppercase">
+        Guest fee
+      </span><br />
+      {guestFeeTerms}
+    </p>
+
+    <section class="bg-brand-50 mt-12 rounded-xl p-6 sm:p-8">
+      <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+        How to join
+      </h2>
+      <ol class="mt-5 grid gap-4 text-slate-700 sm:grid-cols-3">
+        {
+          STEPS.map((step, i) => (
+            <li class="flex gap-3">
+              <span class="bg-brand-600 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white">
+                {i + 1}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <a
+        href={MEMBERSHIP_FORM_URL}
+        rel="noopener"
+        class="bg-brand-600 hover:bg-brand-700 mt-6 inline-block rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+      >
+        Apply for membership
+      </a>
+      <p class="mt-4 text-sm text-slate-600">
+        You are not asked to pay anything when you apply. Payment details come
+        later, in the officer's reply.
+      </p>
+    </section>
 
     <div class="prose prose-slate prose-a:text-brand-700 mt-12 max-w-none">
       <h2>What membership includes</h2>
@@ -66,7 +120,8 @@ const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per se
         </li>
         <li>
           Access to the online court reservation system, which members use to
-          book courts up to six days in advance.
+          book courts up to six days in advance.{' '}
+          <a href={BOOKING_URL} rel="noopener">Book a court</a>.
         </li>
         <li>
           A member handbook explaining how to book courts, how to join groups,
@@ -76,7 +131,7 @@ const guestFeeTerms = `Per visit, up to ${GUEST_VISITS_PER_SEASON} visits per se
     </div>
 
     <p class="mt-12 text-slate-600">
-      To apply, or to ask anything about membership, email{' '}
+      For anything else, email the association at{' '}
       <a
         href={`mailto:${CONTACT_EMAIL}`}
         class="hover:text-brand-700 text-brand-700 underline underline-offset-4"

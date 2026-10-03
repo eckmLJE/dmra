@@ -16,11 +16,12 @@ so none of it is live on the board's URL.
 
 ## Corrections to live figures
 
-| Item             | Value                                                                                                 | Status |
-| ---------------- | ----------------------------------------------------------------------------------------------------- | ------ |
-| Annual dues      | $300                                                                                                  | `DONE` |
-| Guest fee        | $15 per visit, max 8 visits per season                                                                | `DONE` |
-| Membership scope | Household membership — everyone living in a member's home, including renters and out-of-town visitors | `DONE` |
+| Item                  | Value                                                                                                 | Status |
+| --------------------- | ----------------------------------------------------------------------------------------------------- | ------ |
+| Annual dues           | $300                                                                                                  | `DONE` |
+| Guest fee             | $15 per visit, max 8 visits per season                                                                | `DONE` |
+| Membership scope      | Household membership — everyone living in a member's home, including renters and out-of-town visitors | `DONE` |
+| Supporting membership | $175, for members who do not use the courts. Found on the 2027 application, never on the site.        | `DONE` |
 
 All live in `src/consts.ts` (`ANNUAL_DUES`, `GUEST_FEE`,
 `GUEST_VISITS_PER_SEASON`), so one edit updates every page that shows them.
@@ -46,18 +47,18 @@ All live in `src/consts.ts` (`ANNUAL_DUES`, `GUEST_FEE`,
 
 ## Membership page
 
-| #   | Request                                                                                | Status    | Notes                                                                                                                                                                                                                                                                                                   |
-| --- | -------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 11  | Annual dues box → $300                                                                 | `DONE`    |                                                                                                                                                                                                                                                                                                         |
-| 12  | Guest fee → $15.00 per visit, max 8 visits per season                                  | `DONE`    |                                                                                                                                                                                                                                                                                                         |
-| 13  | "Household membership" wording                                                         | `DONE`    |                                                                                                                                                                                                                                                                                                         |
-| 14  | First bullet → "any DMRA household member, including renters and out-of-town visitors" | `DONE`    | Board's wording, set in sentence case to match the rest of the site.                                                                                                                                                                                                                                    |
-| 15  | ADD Venmo link "Pay guest fee here" with guest/member name fields                      | `DECIDE`  | A Venmo link **cannot** carry structured fields — the note is one free-text box the payer can overwrite. New handle: `@DMRA_Tennis_Pickleball_2026`. Masking the link as "click here to venmo" is fine, that's just link text. Fraud exposure and Venmo's business-account rules still need a decision. |
-| 16  | ADD "Apply for membership here"                                                        | `BLOCKED` | Proposal: a Google Form that submits an application without payment; an officer follows up with payment details. Vicki: "No real interest in setting up on-line payment portals."                                                                                                                       |
-| 17  | Membership application, digital version                                                | `BLOCKED` | Application copy was attached to the review but isn't in the file.                                                                                                                                                                                                                                      |
-| 18  | REMOVE "About the association" paragraph                                               | `DONE`    |                                                                                                                                                                                                                                                                                                         |
-| 19  | REMOVE officer contact block from this page                                            | `DONE`    | Officer block removed. Replaced with a single line pointing at the shared address, so the page still has a call to action until #16 lands.                                                                                                                                                              |
-| 20  | ADD "Book a court here" link to Skedda                                                 | `BLOCKED` | Need the Skedda URL.                                                                                                                                                                                                                                                                                    |
+| #   | Request                                                                                | Status | Notes                                                                                                                                                                                          |
+| --- | -------------------------------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 11  | Annual dues box → $300                                                                 | `DONE` |                                                                                                                                                                                                |
+| 12  | Guest fee → $15.00 per visit, max 8 visits per season                                  | `DONE` |                                                                                                                                                                                                |
+| 13  | "Household membership" wording                                                         | `DONE` |                                                                                                                                                                                                |
+| 14  | First bullet → "any DMRA household member, including renters and out-of-town visitors" | `DONE` | Board's wording, set in sentence case to match the rest of the site.                                                                                                                           |
+| 15  | ADD Venmo link "Pay guest fee here" with guest/member name fields                      | `DONE` | Resolved by the application flow below: the handle is never published. An officer sends it in reply to an application, so it reaches only people who asked.                                    |
+| 16  | ADD "Apply for membership here"                                                        | `TODO` | Button, three-step explanation and copy are all built. Points at a placeholder until the Google Form exists.                                                                                   |
+| 17  | Membership application, digital version                                                | `TODO` | Agreed approach: a Google Form, owned by the association's own Google account. Fields can be lifted straight from the 2027 application.                                                        |
+| 18  | REMOVE "About the association" paragraph                                               | `DONE` |                                                                                                                                                                                                |
+| 19  | REMOVE officer contact block from this page                                            | `DONE` | Officer block removed. Replaced with a single line pointing at the shared address, so the page still has a call to action until #16 lands.                                                     |
+| 20  | ADD "Book a court here" link to Skedda                                                 | `DONE` | Skedda has become All Booked. Linked from the Membership page and as a button in the site header. The old dmra.skedda.com address still redirects, so links members already hold keep working. |
 
 ---
 
@@ -169,6 +170,46 @@ Not from the board's review — found while auditing, fixed in the same pass.
 
 ---
 
+## Applications and payment
+
+Agreed flow, which keeps payment details off the public site entirely:
+
+1. The applicant fills in a Google Form, linked from the Membership page.
+2. An officer reviews it and emails back with the ways to pay.
+3. The applicant pays by Venmo or mails a check.
+
+A human sits between the application and any payment information, so the Venmo
+handle and the check address are never published. That removes the
+impersonation risk that made publishing the handle a concern, and it means a
+stranger cannot extract payment details by submitting a form.
+
+The site says plainly that no payment is asked for at the point of applying, so
+nobody assumes something is broken when they are not charged.
+
+**Still to settle with the board:**
+
+- **Who owns the Google account.** The form will hold members' home addresses
+  and phone numbers. In a personal account, that data and control of the form
+  leave with the officer when they rotate off the board. It should sit in an
+  association-owned account.
+- **Renewals.** The paper application covers new members and renewals together.
+  Making every renewing member wait for an officer's reply is a lot of manual
+  round-trips in a short window. Worth deciding whether renewals skip the review.
+- **Who monitors it**, and what response time the confirmation screen should
+  promise.
+- **Turn on email notification for new responses.** This contradicts the usual
+  advice to avoid per-response emails, and here it is right: the flow depends on
+  a prompt human reply, and a spreadsheet nobody opens for three weeks breaks it.
+
+**Two conflicts the 2027 application raises**, neither resolved:
+
+- It gives a mailing address of Ellen Sicinski, 315 Locust Road, where the
+  footer says DMRA, PO Box 521. Unclear which is for what.
+- It names an officer's personal Gmail. Publishing the document as-is would put
+  that back on the public site, undoing the contact-details work.
+
+---
+
 ## Hosting
 
 Currently GoDaddy; this year's fees are paid, and the board prefers to stay.
@@ -215,8 +256,8 @@ test is whether each link does a different job at a different scroll depth.
 
 ## Waiting on
 
-1. **Membership application copy** — blocks the digital application.
-2. **Skedda URL** — blocks the "Book a court" link.
+1. **The Google Form itself** — the Apply button points at a placeholder until it exists.
+2. **Which mailing address** the officer's reply should give for checks.
 3. **Real shared mailbox address** — the site shows a placeholder.
 4. **Venmo decision** — whether it goes on the site at all, and under which kind
    of Venmo account.

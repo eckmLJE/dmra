@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS, SITE_TITLE, url } from '../consts';
+import { BOOKING_URL, NAV_LINKS, SITE_TITLE, url } from '../consts';
 
 const { pathname } = Astro.url;
 
@@ -35,6 +35,17 @@ const isCurrent = (href: string): boolean =>
             </li>
           ))
         }
+        <li>
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener"
+            class="bg-brand-600 hover:bg-brand-700 inline-block rounded-md px-3.5 py-1.5 font-semibold text-white"
+          >
+            Book a court
+            <span aria-hidden="true">&#8599;</span>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
