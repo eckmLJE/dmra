@@ -4,7 +4,7 @@ import { FACILITIES } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { photosFor } from '../photos';
 
-const facility = FACILITIES.find((f) => f.sport === 'Tennis');
+const facility = FACILITIES.find((f) => f.sport === 'tennis');
 if (facility === undefined)
   throw new Error('Missing tennis facility in consts.ts');
 ---

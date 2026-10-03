@@ -1,15 +1,11 @@
 import type { ImageMetadata } from 'astro';
 
-import pickleball1 from './assets/photos/pickleball1.jpg';
-import pickleball2 from './assets/photos/pickleball2.jpg';
-import pickleball3 from './assets/photos/pickleball3.jpg';
-import pickleball5 from './assets/photos/pickleball5.jpg';
-import pickleballCourts from './assets/photos/pickleballcourtsimg_1121.jpg';
-import tennis1 from './assets/photos/tennis1.jpg';
-import tennis2 from './assets/photos/tennis2.jpg';
-import tennis3 from './assets/photos/tennis3.jpg';
-import tennis4 from './assets/photos/tennis4.jpg';
-import tennis5 from './assets/photos/tennis5.jpg';
+import pickleballA from './assets/photos/pickleball-a.jpeg';
+import pickleballB from './assets/photos/pickleball-b.jpeg';
+import pickleballC from './assets/photos/pickleball-c.jpeg';
+import tennisA from './assets/photos/tennis-a.webp';
+import tennisB from './assets/photos/tennis-b.webp';
+import tennisC from './assets/photos/tennis-c.webp';
 
 export type Sport = 'tennis' | 'pickleball';
 
@@ -17,60 +13,62 @@ export interface Photo {
   readonly src: ImageMetadata;
   readonly alt: string;
   readonly sport: Sport;
+  /** The board's label for this photo in the website review. */
+  readonly label: 'A' | 'B' | 'C';
 }
 
+/**
+ * The six photographs supplied by the board. The first of each sport is its
+ * lead image, shown on the home page; all three appear on the court page.
+ */
 export const PHOTOS: readonly Photo[] = [
   {
-    src: pickleball1,
-    alt: 'Two blue and green pickleball courts with permanent nets, enclosed by a chain-link fence and surrounded by trees.',
+    src: pickleballA,
+    alt: 'An empty pickleball court on Ireland Way with the net up, shaded picnic tables beyond and pine trees behind.',
     sport: 'pickleball',
+    label: 'A',
   },
   {
-    src: pickleball2,
-    alt: 'A doubles game in progress on one of the Ireland Way pickleball courts, with players waiting on the adjacent court.',
+    src: pickleballB,
+    alt: 'Players on the Ireland Way pickleball courts under a clear sky, with further courts and picnic tables beyond.',
     sport: 'pickleball',
+    label: 'B',
   },
   {
-    src: pickleball3,
-    alt: 'Four players at the net during a doubles rally on the pickleball courts.',
+    src: pickleballC,
+    alt: 'A game in progress on one of the Ireland Way pickleball courts, seen past the court-side fence.',
     sport: 'pickleball',
+    label: 'C',
   },
   {
-    src: pickleball5,
-    alt: 'Players on two of the Ireland Way pickleball courts on a summer afternoon.',
-    sport: 'pickleball',
-  },
-  {
-    src: pickleballCourts,
-    alt: 'An empty pickleball court at Ireland Way, backed by pine trees.',
-    sport: 'pickleball',
-  },
-  {
-    src: tennis1,
-    alt: 'A player returning a shot during a doubles match on the green hard courts at Widgeon Drive.',
+    src: tennisA,
+    alt: 'A player following through on a shot at the Widgeon Drive tennis courts, with others playing on the far court.',
     sport: 'tennis',
+    label: 'A',
   },
   {
-    src: tennis2,
-    alt: 'A player waiting to receive serve on the Widgeon Drive tennis courts, with a doubles game on the far court.',
+    src: tennisB,
+    alt: 'A player stretching to volley at the net during a doubles match on the Widgeon Drive courts.',
     sport: 'tennis',
+    label: 'B',
   },
   {
-    src: tennis3,
-    alt: 'Doubles partners at the net during a point on the tennis courts.',
+    src: tennisC,
+    alt: 'A doubles match on the Widgeon Drive tennis courts, with play continuing on the courts beyond.',
     sport: 'tennis',
-  },
-  {
-    src: tennis4,
-    alt: 'A player stretching wide for a forehand near the net.',
-    sport: 'tennis',
-  },
-  {
-    src: tennis5,
-    alt: 'Players at the net on both tennis courts at Widgeon Drive.',
-    sport: 'tennis',
+    label: 'C',
   },
 ];
 
 export const photosFor = (sport: Sport): readonly Photo[] =>
   PHOTOS.filter((photo) => photo.sport === sport);
+
+/** The lead ("A") photo for a sport, used on the home page court cards. */
+export const leadPhoto = (sport: Sport): Photo => photo(sport, 'A');
+
+/** One specific photo, by the board's sport and label. */
+export const photo = (sport: Sport, label: Photo['label']): Photo => {
+  const found = PHOTOS.find((p) => p.sport === sport && p.label === label);
+  if (found === undefined) throw new Error(`No ${sport} photo ${label}`);
+  return found;
+};

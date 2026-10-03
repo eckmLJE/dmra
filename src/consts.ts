@@ -10,7 +10,7 @@ export const SITE_DESCRIPTION =
  * Prefixes a root-relative path with the site's base path.
  *
  * When the site is served from a subdirectory rather than a domain root — as
- * GitHub Pages does for a project site — a bare `href="/photos/"` would 404.
+ * GitHub Pages does for a project site — a bare `href="/tennis/"` would 404.
  * Write paths as if the site were at the root and pass them through this helper
  * when rendering. `BASE_URL` comes from `base` in astro.config.ts, which reads
  * the deployment environment, so nothing here hard-codes a host or directory.
@@ -27,14 +27,15 @@ export const NAV_LINKS: readonly NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/tennis/', label: 'Tennis' },
   { href: '/pickleball/', label: 'Pickleball' },
-  { href: '/photos/', label: 'Photos' },
   { href: '/membership/', label: 'Membership' },
 ];
+
+import type { Sport } from './photos';
 
 export interface Facility {
   readonly name: string;
   readonly href: string;
-  readonly sport: string;
+  readonly sport: Sport;
   readonly courts: string;
   readonly address: string;
   readonly features: readonly string[];
@@ -48,7 +49,7 @@ export const FACILITIES: readonly Facility[] = [
   {
     name: 'Pickleball courts on Ireland Way',
     href: '/pickleball/',
-    sport: 'Pickleball',
+    sport: 'pickleball',
     courts: '3 courts',
     address: '345 Ireland Way, Eastham, MA 02642',
     features: [
@@ -63,7 +64,7 @@ export const FACILITIES: readonly Facility[] = [
   {
     name: 'Tennis courts on Widgeon Drive',
     href: '/tennis/',
-    sport: 'Tennis',
+    sport: 'tennis',
     courts: '2 courts',
     address: '130 Widgeon Drive, Eastham, MA 02642',
     features: [

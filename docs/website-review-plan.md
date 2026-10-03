@@ -29,18 +29,18 @@ All live in `src/consts.ts` (`ANNUAL_DUES`, `GUEST_FEE`,
 
 ## Home page
 
-| #   | Request                                                           | Status    | Notes                                                                                                                                                                  |
-| --- | ----------------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Compress so no scrolling needed                                   | `DONE`    | Not shortened. Addressed instead by removing genuinely duplicated content — see _Duplication_ below. Vicki accepted the point about differing scrolling habits.        |
-| 2   | Capitalize Pickleball in the heading                              | `DONE`    | Reworded to "Play tennis and pickleball in Eastham" so neither sport starts the sentence. Keeps sentence case, removes the asymmetry.                                  |
-| 3   | Use 1 photo each for Home, Tennis A, Pickleball A                 | `BLOCKED` | Attachments not present in the .docx — no `word/media/` in the archive.                                                                                                |
-| 4   | REMOVE "Our courts" section                                       | `DONE`    | **Keeping it.** The only home section with no counterpart elsewhere: it compares the two locations side by side, which neither detail page does.                       |
-| 5   | REMOVE hero links "Become a member" / "See the courts"            | `DONE`    | **Keeping both.** "Become a member" is the page's primary action. "See the courts" is the only non-nav route to the photos; revisit if the Photos page goes (#28).     |
-| 6   | REMOVE footer "Membership inquiries" link                         | `DONE`    |                                                                                                                                                                        |
-| 7   | New "About the association" copy                                  | `DONE`    | Board's wording verbatim, and it now appears only here.                                                                                                                |
-| 8   | Officer contact reduced, moved to bottom, retitled                | `DONE`    | Roster is on the home page only, at the bottom, compact, under the board's heading. Names and roles only.                                                              |
-| 9   | Officer contact details exposed publicly                          | `DONE`    | Resolved per _Officer contact_ below: one shared association address, no personal emails or phone numbers. Address is a **placeholder** until the real mailbox exists. |
-| 10  | ADD "DMRA PO Box 521, Eastham MA 02642" to left footer, all pages | `DONE`    | In `MAILING_ADDRESS` in `src/consts.ts`; renders on all five pages.                                                                                                    |
+| #   | Request                                                           | Status | Notes                                                                                                                                                                  |
+| --- | ----------------------------------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Compress so no scrolling needed                                   | `DONE` | Not shortened. Addressed instead by removing genuinely duplicated content — see _Duplication_ below. Vicki accepted the point about differing scrolling habits.        |
+| 2   | Capitalize Pickleball in the heading                              | `DONE` | Reworded to "Play tennis and pickleball in Eastham" so neither sport starts the sentence. Keeps sentence case, removes the asymmetry.                                  |
+| 3   | Use 1 photo each for Home, Tennis A, Pickleball A                 | `DONE` | Lead ("A") photo of each sport on the home page court cards. The hero uses Tennis B so no photo appears twice on the page.                                             |
+| 4   | REMOVE "Our courts" section                                       | `DONE` | **Keeping it.** The only home section with no counterpart elsewhere: it compares the two locations side by side, which neither detail page does.                       |
+| 5   | REMOVE hero links "Become a member" / "See the courts"            | `DONE` | "Become a member" kept as the primary action. "See the courts" removed — its only job was routing to the gallery, which is gone (#28).                                 |
+| 6   | REMOVE footer "Membership inquiries" link                         | `DONE` |                                                                                                                                                                        |
+| 7   | New "About the association" copy                                  | `DONE` | Board's wording verbatim, and it now appears only here.                                                                                                                |
+| 8   | Officer contact reduced, moved to bottom, retitled                | `DONE` | Roster is on the home page only, at the bottom, compact, under the board's heading. Names and roles only.                                                              |
+| 9   | Officer contact details exposed publicly                          | `DONE` | Resolved per _Officer contact_ below: one shared association address, no personal emails or phone numbers. Address is a **placeholder** until the real mailbox exists. |
+| 10  | ADD "DMRA PO Box 521, Eastham MA 02642" to left footer, all pages | `DONE` | In `MAILING_ADDRESS` in `src/consts.ts`; renders on all five pages.                                                                                                    |
 
 ---
 
@@ -63,26 +63,26 @@ All live in `src/consts.ts` (`ANNUAL_DUES`, `GUEST_FEE`,
 
 ## Tennis page
 
-| #   | Request                                                                         | Status                          |
-| --- | ------------------------------------------------------------------------------- | ------------------------------- |
-| 21  | First bullet → "Hard-surfaced outdoor courts"                                   | `DONE`                          |
-| 22  | Toilet bullet → "Locked portable toilet"                                        | `DONE`                          |
-| 23  | ADD bullet "Parking for 8 cars"                                                 | `DONE`                          |
-| 24  | REMOVE "The courts are open to association members and their guests. Join us →" | `DONE`                          |
-| 25  | Replace 5 photos with 3 (Tennis A, B, C)                                        | `BLOCKED` — attachments missing |
+| #   | Request                                                                         | Status |
+| --- | ------------------------------------------------------------------------------- | ------ |
+| 21  | First bullet → "Hard-surfaced outdoor courts"                                   | `DONE` |
+| 22  | Toilet bullet → "Locked portable toilet"                                        | `DONE` |
+| 23  | ADD bullet "Parking for 8 cars"                                                 | `DONE` |
+| 24  | REMOVE "The courts are open to association members and their guests. Join us →" | `DONE` |
+| 25  | Replace 5 photos with 3 (Tennis A, B, C)                                        | `DONE` |
 
 ## Pickleball page
 
-| #   | Request                                                                         | Status                          |
-| --- | ------------------------------------------------------------------------------- | ------------------------------- |
-| 26  | REMOVE "The courts are open to association members and their guests. Join us →" | `DONE`                          |
-| 27  | Replace all 5 photos with 3 (Pickleball A, B, C)                                | `BLOCKED` — attachments missing |
+| #   | Request                                                                         | Status |
+| --- | ------------------------------------------------------------------------------- | ------ |
+| 26  | REMOVE "The courts are open to association members and their guests. Join us →" | `DONE` |
+| 27  | Replace all 5 photos with 3 (Pickleball A, B, C)                                | `DONE` |
 
 ## Photos page
 
-| #   | Request                                 | Status   | Notes                                                                                                                                                                                             |
-| --- | --------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 28  | Remove the page entirely as duplicative | `DECIDE` | Removing it drops a nav item and leaves the hero's "See the courts" link homeless (#5). If each sport keeps only three photos, the case for a combined gallery weakens — so settle #25/#27 first. |
+| #   | Request                                 | Status | Notes                                                                                                                                                                                                |
+| --- | --------------------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 28  | Remove the page entirely as duplicative | `DONE` | Page deleted and dropped from the nav. With six photos, all shown on the home and court pages, the gallery was wholly duplicative — the board was right once the court pages were cut to three each. |
 
 ---
 
@@ -215,10 +215,21 @@ test is whether each link does a different job at a different scroll depth.
 
 ## Waiting on
 
-1. **Photo attachments** — Tennis A/B/C, Pickleball A/B/C, one home page photo.
-   Blocks four items.
-2. **Membership application copy** — blocks the digital application.
-3. **Skedda URL** — blocks the "Book a court" link.
-4. **Real shared mailbox address** — the site shows a placeholder.
-5. **Venmo decision** — whether it goes on the site at all, and under which kind
+1. **Membership application copy** — blocks the digital application.
+2. **Skedda URL** — blocks the "Book a court" link.
+3. **Real shared mailbox address** — the site shows a placeholder.
+4. **Venmo decision** — whether it goes on the site at all, and under which kind
    of Venmo account.
+
+## Photos — a note for next time
+
+The six board photos are committed at full resolution in `src/assets/photos/`.
+Send image files through the repository rather than attaching them to a chat:
+uploads are resized to roughly 2000px on the long edge, which cost the
+pickleball originals about 75% of their pixels before they ever reached the
+build.
+
+`pickleball-c.jpeg` is stored landscape with an EXIF rotation flag, so it looks
+portrait in Finder and sideways to anything that ignores EXIF. Astro's image
+pipeline applies the rotation, verified in the build output — but it is worth
+knowing if the photo ever gets processed by something else.

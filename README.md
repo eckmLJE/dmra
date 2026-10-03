@@ -81,10 +81,14 @@ in the site navigation, add it to `NAV_LINKS` in `src/consts.ts`.
 ## Adding photos
 
 Drop the image into `src/assets/photos/`, then add an entry to `PHOTOS` in
-`src/photos.ts` with a short description for screen readers and whether it shows
-tennis or pickleball. It will appear on `/photos/` and on the matching court
-page. Astro handles resizing and WebP conversion at build time — commit the
-full-size original.
+`src/photos.ts` with a short description for screen readers, the sport it
+shows, and its label. Photos appear on the matching court page, and the one
+labelled `A` is also used on the home page.
+
+Commit the full-size original — Astro resizes and converts to WebP at build
+time, and a larger source produces a better result at every size. EXIF
+rotation is applied, so a photo that your computer shows as portrait will not
+come out sideways.
 
 ## Deployment
 
@@ -109,10 +113,10 @@ configuration:
 
 A GitHub Pages project site is served from a subdirectory, so internal links
 must be prefixed. Use the `url()` helper from `src/consts.ts` for every internal
-link rather than writing `href="/photos/"` directly:
+link rather than writing `href="/tennis/"` directly:
 
 ```astro
-<a href={url('/photos/')}>Photos</a>
+<a href={url('/tennis/')}>Tennis</a>
 ```
 
 When the association points a real domain at the site, set `SITE_URL` to it,

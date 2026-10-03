@@ -1,14 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import heroPhoto from '../assets/photos/tennis1.jpg';
 import OfficerList from '../components/OfficerList.astro';
 import { ANNUAL_DUES, FACILITIES, ORG_NAME, mapsUrl, url } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { leadPhoto, photo } from '../photos';
 
 // Assembled here rather than inline: Prettier wraps long lines between an
 // expression and the text after it, and Astro drops the whitespace at that
 // break, silently gluing the words together.
 const intro = `Outdoor tennis and pickleball courts on Cape Cod, run by the ${ORG_NAME}, open to players of every level.`;
+
+// Deliberately not the lead photo: the two court cards below already use the
+// 'A' photo of each sport, and the hero repeating one of them looked like a
+// mistake.
+const hero = photo('tennis', 'B');
 ---
 
 <BaseLayout>
@@ -28,24 +33,18 @@ const intro = `Outdoor tennis and pickleball courts on Cape Cod, run by the ${OR
         <p class="mt-5 max-w-xl text-lg text-pretty text-slate-700">
           {intro}
         </p>
-        <div class="mt-8 flex flex-wrap gap-4">
+        <div class="mt-8">
           <a
             href={url('/membership/')}
-            class="bg-brand-600 hover:bg-brand-700 rounded-md px-5 py-2.5 text-sm font-semibold text-white"
+            class="bg-brand-600 hover:bg-brand-700 inline-block rounded-md px-5 py-2.5 text-sm font-semibold text-white"
           >
             Become a member
-          </a>
-          <a
-            href={url('/photos/')}
-            class="border-brand-600 text-brand-700 hover:bg-brand-100 rounded-md border px-5 py-2.5 text-sm font-semibold"
-          >
-            See the courts
           </a>
         </div>
       </div>
       <Image
-        src={heroPhoto}
-        alt="Players in a doubles match on the tennis courts at Widgeon Drive."
+        src={hero.src}
+        alt={hero.alt}
         widths={[600, 900, 1200]}
         sizes="(min-width: 1024px) 32rem, 90vw"
         loading="eager"
@@ -59,28 +58,38 @@ const intro = `Outdoor tennis and pickleball courts on Cape Cod, run by the ${OR
     <div class="mt-8 grid gap-6 md:grid-cols-2">
       {
         FACILITIES.map((facility) => (
-          <article class="flex flex-col rounded-xl border border-slate-200 p-6">
-            <p class="text-brand-700 text-sm font-semibold tracking-wide uppercase">
-              {facility.sport}
-            </p>
-            <h3 class="mt-2 text-xl font-semibold text-slate-900">
-              {facility.courts}
-            </h3>
-            <p class="mt-2 text-slate-600">
+          <article class="flex flex-col overflow-hidden rounded-xl border border-slate-200">
+            <Image
+              src={leadPhoto(facility.sport).src}
+              alt={leadPhoto(facility.sport).alt}
+              widths={[400, 800, 1200]}
+              sizes="(min-width: 768px) 32rem, 90vw"
+              loading="lazy"
+              class="aspect-[16/9] w-full object-cover"
+            />
+            <div class="p-6">
+              <p class="text-brand-700 text-sm font-semibold tracking-wide uppercase">
+                {facility.sport}
+              </p>
+              <h3 class="mt-2 text-xl font-semibold text-slate-900">
+                {facility.courts}
+              </h3>
+              <p class="mt-2 text-slate-600">
+                <a
+                  href={mapsUrl(facility.address)}
+                  class="hover:text-brand-700 underline underline-offset-4"
+                  rel="noopener"
+                >
+                  {facility.address}
+                </a>
+              </p>
               <a
-                href={mapsUrl(facility.address)}
-                class="hover:text-brand-700 underline underline-offset-4"
-                rel="noopener"
+                href={url(facility.href)}
+                class="text-brand-700 mt-5 inline-block text-sm font-semibold hover:underline"
               >
-                {facility.address}
+                About these courts &rarr;
               </a>
-            </p>
-            <a
-              href={url(facility.href)}
-              class="text-brand-700 mt-5 text-sm font-semibold hover:underline"
-            >
-              About these courts &rarr;
-            </a>
+            </div>
           </article>
         ))
       }
