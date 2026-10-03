@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import OfficerList from '../components/OfficerList.astro';
-import { FACILITIES, ORG_NAME, mapsUrl, url } from '../consts';
+import { FACILITIES, ORG_NAME, PLAYING_DUES, mapsUrl, url } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { leadPhoto, photo } from '../photos';
 
@@ -112,9 +112,9 @@ const hero = photo('tennis', 'B');
           condition of all courts.
         </p>
         <p>
-          We are currently accepting new members.{' '}
-          <a href={url('/membership/')}>See what membership includes</a>,
-          including the annual dues.
+          Annual dues are {PLAYING_DUES}. We are currently accepting new
+          members.{' '}
+          <a href={url('/membership/')}>See what membership includes</a>.
         </p>
       </div>
     </div>
