@@ -1,0 +1,57 @@
+---
+/*
+ * Site-wide announcement bar. Turn it on and off with SHOW_ANNOUNCEMENT in
+ * src/consts.ts; edit the wording below for a different notice (a work day, a
+ * court closure, the annual picnic).
+ */
+import {
+  CONTACT_EMAIL,
+  DUES_SEASON,
+  PLAYING_DUES,
+  SUPPORTING_DUES,
+  VENMO_HANDLE,
+  VENMO_URL,
+  url,
+} from '../consts';
+
+// Assembled here rather than inline: Prettier wraps long lines between an
+// expression and the text after it, and Astro drops the whitespace at that
+// break, silently gluing the words together.
+const headline = `${DUES_SEASON} dues are open for renewal`;
+const amounts = `${PLAYING_DUES} for a playing membership, ${SUPPORTING_DUES} for a supporting membership.`;
+---
+
+<aside aria-label="Announcement" class="bg-brand-700 text-white">
+  <div class="mx-auto max-w-5xl px-6 py-3 text-sm">
+    <p class="font-semibold">{headline}</p>
+    <p class="text-brand-50 mt-1">
+      <span class="font-medium">Already a member?</span> Pay by Venmo to{' '}
+      <a
+        href={VENMO_URL}
+        rel="noopener"
+        class="font-medium underline underline-offset-4 hover:text-white"
+      >
+        {`@${VENMO_HANDLE}`}
+      </a>
+      {` — ${amounts} To pay another way, email `}
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        class="underline underline-offset-4 hover:text-white"
+      >
+        {CONTACT_EMAIL}
+      </a>.
+    </p>
+    <p class="text-brand-100 mt-1">
+      <span class="font-medium">New to the association?</span>{' '}
+      <a
+        href={url('/membership/')}
+        class="underline underline-offset-4 hover:text-white"
+      >
+        Apply for membership
+      </a>
+      {
+        ' first, and please wait until an officer has confirmed your membership before paying.'
+      }
+    </p>
+  </div>
+</aside>

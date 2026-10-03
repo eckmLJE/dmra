@@ -113,6 +113,25 @@ export const GUEST_FEE = '$15';
 /** Maximum guest visits one membership may host in a season. */
 export const GUEST_VISITS_PER_SEASON = 8;
 
+/** The membership year the published dues apply to. */
+export const DUES_SEASON = '2027';
+
+/**
+ * The association's Venmo business profile. Shown as plain text as well as a
+ * link: Venmo's brand guidelines ask for the word "Venmo" in running text
+ * rather than their logo, and a visible handle lets a member check it against
+ * what the board told them before paying.
+ */
+export const VENMO_HANDLE = 'DMRA_Tennis_Pickleball_2026';
+export const VENMO_URL = `https://venmo.com/u/${VENMO_HANDLE}`;
+
+/**
+ * Switches the site-wide announcement bar on and off. Set to false when the
+ * renewal window closes. The bar's wording lives in
+ * src/components/Announcement.astro.
+ */
+export const SHOW_ANNOUNCEMENT = true;
+
 /** Court reservation system. The old dmra.skedda.com address still redirects
  *  here, so links members already have keep working. */
 export const BOOKING_URL = 'https://dmra.allbooked.com';
